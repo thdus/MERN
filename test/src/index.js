@@ -7,11 +7,11 @@ import Footer from "./Footer";
 import {HashRouter} from 'react-router-dom';
 
 
-// ReactDOM.render(
-//   <HashRouter>
-//     <Header/>
-//     <Body/>
-//     <Footer/>
-//   </HashRouter>,
-//   document.querySelector("#container")
-// );
+ ReactDOM.render(
+    <HashRouter>
+        <Header/>
+        <Body/>
+        <Footer/>
+    </HashRouter>,
+  document.querySelector("#container")
+ );

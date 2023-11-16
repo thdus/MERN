@@ -16,10 +16,10 @@ join =() => {
       password: this.joinPw.value
     };
     axios
-      .post("http://localhost:8080/member/join", send_param) //서버 주소를 호출해서 parameter를 넘겨주고
+      .post("http://localhost:8080/member/join", send_param) //서버 주소를 호출해서 parameter를 넘겨주고(비동기(페이지이동x))
       //정상 수행됐을 때 then
       .then(returnData => {
-        if (returnData.data.message) {
+        if (returnData.data.message) { //return data에 바로 안보내고 returnData의 data에 보내줌
           alert(returnData.data.message);
     
         } else {
@@ -35,7 +35,7 @@ join =() => {
  
 
     const send_param = { //이메일과 pw넣어주고
-      headers,
+      headers, //cors 설정하는 속성들 넘겨줌
       email: this.loginEmail.value, 
       password: this.loginPw.value
     };
@@ -68,60 +68,73 @@ join =() => {
 
     return ( //이런식으로, 부트스트랩 이용
        <Form style={formStyle}>
-        <Form.Group controlId="joinForm">
+        <Form.Group controlId="joinEmailGroup">
           <Form.Label>Email address</Form.Label>
           <Form.Control
             type="email"
-            maxLength="100"
+            id="joinEmail"
             ref={ref => (this.joinEmail = ref)} //reference(리액트에서는 이런식으로 아이디 값을 부여)
             placeholder="Enter email"
           />
           <Form.Text className="text-muted">
             We'll never share your email with anyone else.
           </Form.Text>
-          <Form.Label>name</Form.Label>
-          <Form.Control
-            type="text"
-            maxLength="20"
-            ref={ref => (this.joinName = ref)}
-            placeholder="name"
-          />
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type="password"
-            maxLength="64"
-            ref={ref => (this.joinPw = ref)}
-            placeholder="Password"
-          />
+          </Form.Group>
+          <Form.Group controlId="joinNameGroup">
+            <Form.Label>Name</Form.Label>
+            <Form.Control
+             type="text"
+             id="joinName"
+             maxLength="20"
+             ref={ref => (this.joinName = ref)}
+             placeholder="Name"
+            />
+          </Form.Group>
+
+          <Form.Group controlId="joinPasswordGroup">
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              type="password"
+              id="joinPassword"
+              maxLength="64"
+              ref={ref => (this.joinPw = ref)}
+              placeholder="Password"
+            />
+          </Form.Group>
           <Button
             style={buttonStyle}
-            onClick={this.join}
+            onClick={this.join} //click 할 때 마다 join을 호출하겠다
             variant="primary" //파란색
             type="button"
             block //버튼을 끝까지 길게
           >
             회원가입
           </Button>
-        </Form.Group>
+      
 
-        <Form.Group controlId="loginForm">
-          <Form.Label>Email address</Form.Label>
-          <Form.Control
-            type="email"
-            maxLength="100"
-            ref={ref => (this.loginEmail = ref)} //ref로 아이디값을 이메일로
-            placeholder="Enter email"
-          />
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type="password"
-            maxLength="20"
-            ref={ref => (this.loginPw = ref)}
-            placeholder="Password"
-          />
+          <Form.Group controlId="loginEmailGroup">
+            <Form.Label>Email address</Form.Label>
+            <Form.Control
+              type="email"
+              id="loginEmail"
+              maxLength="100"
+              ref={ref => (this.loginEmail = ref)}
+              placeholder="Enter email"
+            />
+          </Form.Group>
+
+          <Form.Group controlId="loginPasswordGroup">
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              type="password"
+              id="loginPassword"
+              maxLength="20"
+              ref={ref => (this.loginPw = ref)}
+              placeholder="Password"
+            />
           <Button
             style={buttonStyle}
-            onClick={this.login}
+            onClick={this.login}// click 할 때 마다 login 호출
             variant="primary" 
             type="button"
             block 
