@@ -13,7 +13,7 @@ class BoardWriteForm extends Component {
     };
 
     componentDidMount() { //랜더링이 다 됐을 때 데이터 셋팅, CKEditor 공식 문서 참조
-        if (this.props.location.query !== undefined) {
+        if (this.props.location.query !== undefined  && this.props.location !== undefined) {
             this.boardTitle.value = this.props.location.query.title;
             this.setState({
                 data : this.props.location.query.content

@@ -83,14 +83,14 @@ class BoardForm extends Component {
             _id: $.cookie("login_id") // 쿠키값으로 아이디 가져와서 그 아이디 값에 해당하는 게시글 목록을 가져옴
         };
         axios
-            .post("http://localhost:8080/board/getBoardList", send_param)
+            .post("http://localhost:8080/board/getBoardList", sent_param)
             .then(returnData => {
                 if (returnData.data.list) {
-                   // console.log(returnData.data.list.length);
+                    console.log(returnData.data.list.length);
                     const boards = returnData.data.list;
                     const boardList = boards.map(item => ( //map = 반복문을 돌려서 같은 형식을 반복해줌, for문을 돌리면 object로 인식하기 때문
                         <BoardRow
-                            key={Data.now() + Math.random() * 500}
+                            key={Date.now() + Math.random() * 500}
                             _id={item._id}
                             createdAt={item.createAt}
                             title={item.title}
