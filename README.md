@@ -1,1 +1,1 @@
-https://www.notion.so/_Today-I-Studied-d9e9cf2ebf6d45bd9f71753bda9a382a
+https://glacier-bone-017.notion.site/2023-2-32be320a99a54ba690e4eb4a4076c3a4?pvs=4
